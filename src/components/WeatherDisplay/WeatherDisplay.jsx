@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CurrentWeather from './CurrentWeather';
+import WeatherGraph from './WeatherGraph';
 
 class WeatherDisplay extends Component {
   state = {
@@ -19,10 +20,16 @@ class WeatherDisplay extends Component {
   render() {
     const { cityData, weatherData } = this.state;
     return (
-      <CurrentWeather
-        cityData={this.state.cityData}
-        weatherData={this.state.weatherData}
-      />
+      <div className="flex-container">
+        <CurrentWeather
+          cityData={this.state.cityData}
+          weatherData={this.state.weatherData}
+        />
+        <WeatherGraph
+          cityData={this.state.cityData}
+          weatherData={this.state.weatherData}
+        />
+      </div>
     );
   }
 

@@ -1,7 +1,14 @@
 import React from 'react';
 
-const SearchBar = () => {
-  return <p>This will be the search bar</p>;
+const SearchBar = ({ searchInput }) => {
+  return (
+    <input
+      type="text"
+      name="search"
+      placeholder="Search for a City..."
+      onChange={searchInput}
+    />
+  );
 };
 
 export default SearchBar;

@@ -13,7 +13,7 @@ function currentWeather({ cityData, weatherData }) {
         <p>{`Wind Speed: ${weatherData[0].wind.speed} meter/sec`}</p>
       </div>
     );
-  } else return <p>Loading....</p>;
+  } else return <p>Loading Current Weather....</p>;
 }
 
 export default currentWeather;
