@@ -3,7 +3,6 @@ import './App.css';
 import SearchBar from './components/SearchBar';
 import WeatherDisplay from './components/WeatherDisplay/WeatherDisplay';
 import { APIkey } from './config/index';
-import { townData } from './data/gbData';
 
 class App extends Component {
   state = {
