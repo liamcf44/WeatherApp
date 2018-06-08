@@ -7,3 +7,7 @@ h1 {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.weathericon {
+  font-size: 20px;
+}

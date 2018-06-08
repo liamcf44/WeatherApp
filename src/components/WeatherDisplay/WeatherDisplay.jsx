@@ -10,7 +10,6 @@ class WeatherDisplay extends Component {
   };
 
   componentDidMount = async () => {
-    console.log(this.props);
     const data = await this.fetchData();
     this.setState({
       cityData: data.city,
@@ -29,6 +28,7 @@ class WeatherDisplay extends Component {
   };
 
   render() {
+    console.log(this.state.weatherData);
     const { cityData, weatherData } = this.state;
     return (
       <div className="flex-container">
