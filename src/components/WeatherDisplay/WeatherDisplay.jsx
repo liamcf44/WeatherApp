@@ -6,17 +6,26 @@ import WeatherGraph from './WeatherGraph';
 class WeatherDisplay extends Component {
   state = {
     cityData: {},
-    weatherData: [],
-    input: '',
-    chosenCity: 'Skipton'
+    weatherData: []
   };
 
   componentDidMount = async () => {
+    console.log(this.props);
     const data = await this.fetchData();
     this.setState({
       cityData: data.city,
       weatherData: data.list
     });
+  };
+
+  componentDidUpdate = async prevProps => {
+    if (prevProps !== this.props) {
+      const data = await this.fetchData();
+      this.setState({
+        cityData: data.city,
+        weatherData: data.list
+      });
+    }
   };
 
   render() {
@@ -40,7 +49,7 @@ class WeatherDisplay extends Component {
     const { data } = await axios
       .get(
         `https://api.openweathermap.org/data/2.5/forecast?q=${
-          this.state.chosenCity
+          this.props.chosenCity
         }&mode=json${APIkey}`
       )
       .catch(err => {

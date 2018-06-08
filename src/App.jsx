@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import WeatherDisplay from './components/WeatherDisplay/WeatherDisplay';
-import { APIkey, mlabKey } from './config/index';
+import { APIkey } from './config/index';
 import axios from 'axios';
 
 class App extends Component {
   state = {
-    input: ''
+    input: '',
+    chosenCity: 'Manchester'
   };
 
   render() {
@@ -18,7 +19,7 @@ class App extends Component {
           searchInput={this.searchInput}
           handleCity={this.handleCity}
         />
-        <WeatherDisplay APIkey={APIkey} input={this.state.input} />
+        <WeatherDisplay APIkey={APIkey} chosenCity={this.state.chosenCity} />
       </div>
     );
   }
@@ -29,13 +30,11 @@ class App extends Component {
 
   handleCity = async ({ target: { value } }) => {
     await axios
-      .get(
-        `https://api.mlab.com/api/a/databases/openweathermap_gbtowns/collections/towns?q=${
-          this.state.input
-        }&apiKey=${mlabKey}`
-      )
-      .then(result => {
-        console.log(result);
+      .get(`https://whispering-harbor-65248.herokuapp.com/${this.state.input}`)
+      .then(({ data: { result } }) => {
+        this.setState({
+          chosenCity: result[0].name
+        });
       })
       .catch(err => console.log(err));
   };
